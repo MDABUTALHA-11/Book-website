@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> উপন্যাস</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google fonts Bangla -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Unlock&display=swap" rel="stylesheet">
+    <!-- Google fonts English -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    
+    
+    <style>
+        .book-cover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .book-cover:hover {
+            transform: scale(1.03);
+        }
+        
+        .download-btn {
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .similar-book-card {
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .similar-book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .pdf-icon {
+            color: #e74c3c;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body  style="font-family: Winky Rough;">
+    <!-- Header -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                      <a class="navbar-brand" href="#">
+      <img src="/Image/ChatGPT Image Jun 5, 2025, 11_41_57 AM.png" class="rounded-3" alt="Bootstrap" width="50" height="44">
+    </a>
+                    <span class="fw-bold">বইবিন্দু </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">কল্পকাহিনী</a></li>
+                                <li><a class="dropdown-item" href="#">অ-কল্পকাহিনী</a></li>
+                                <li><a class="dropdown-item" href="#">শিক্ষাগত</a></li>
+                                <li><a class="dropdown-item" href="#">স্ব-সহায়তা</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">সকল বিভাগ</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-primary ms-2 px-3" href="/Page/book.html">Upload Your Book</a>
+                        </li>
+                   <!--     <li class="nav-item ms-2 d-flex align-items-center">
+                            <a class="btn btn-primary" href="#">Sign In / Sign Up</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Book Details Section -->
+    <section class="book-details py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Breadcrumb Navigation -->
+                <div class="col-12 mb-4">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/Fiction/page1.html">Fiction</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">পথের-পাঁচালী</li>
+                        </ol>
+                    </nav>
+                </div>
+                
+                <!-- Book Cover and Basic Info -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="text-center">
+                        <img src="/Image/jimeng-2025-06-07-6-A rural Bengal village scene in the early 20th century. Two barefoot children wa....jpeg"
+                             alt="The Great Gatsby" 
+                             class="img-fluid rounded book-cover">
+                        <div class="mt-3">
+                            <span class="badge bg-success me-2">
+                                <i class="fas fa-star"></i> 4.5
+                            </span>
+                            <span class="badge bg-light text-dark">
+                                <i class="fas fa-download"></i> 12,345 downloads
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Book Details -->
+                <div class="col-md-8">
+                    <h1 class="display-5 fw-bold mb-3">পথের-পাঁচালী</h1>
+                    <h4 class="text-muted mb-4">বিভূতিভূষণ বন্দ্যোপাধ্যায়</h4>
+                    
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <span class="badge bg-primary">উপন্যাস</span>
+                        <span class="badge bg-secondary">Classic</span>
+                        <span class="badge bg-info">Literary</span>
+                        <span class="badge bg-warning text-dark">1920s</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5 class="mb-3">বইয়ের বিবরণ</h5>
+                        <p class="lead">পথের পাঁচালী হল প্রখ্যাত সাহিত্যিক বিভূতিভূষণ বন্দ্যোপাধ্যায় রচিত একটি বিখ্যাত উপন্যাস। বাংলার গ্রামে দুই ভাইবোন অপু আর দুর্গার বেড়ে ওঠা নিয়েই বিখ্যাত এই উপন্যাস।</p>
+                        <p></p>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-title text-muted">বইয়ের বিবরণ</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><strong>প্রকাশকাল:</strong>  1929</li>
+                                        <li class="mb-2"><strong>পৃষ্ঠা সংখ্যা:</strong> 250 </li>
+                                        <li class="mb-2"><strong>ভাষা:</strong> বাংলা</li>
+                                        <li class="mb-2"><strong>ফাইল সাইজ:</strong> 3.4 MB</li>
+                                        <li><strong>ফরম্যাট:</strong> PDF</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                  <!--     <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title text-muted">Additional Info</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><strong>ISBN:</strong> 978-0743273565</li>
+                                        <li class="mb-2"><strong>Publisher:</strong> Charles Scribner's Sons</li>
+                                        <li class="mb-2"><strong>Characters:</strong> Jay Gatsby, Nick Carraway, Daisy Buchanan</li>
+                                        <li><strong>Original Title:</strong> The Great Gatsby</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="/Assets/pdf/পথের-পাঁচালী.pdf" 
+                           class="btn btn-danger btn-lg download-btn px-4" download="পথের-পাঁচালী.pdf">
+                            <i class="fas fa-file-pdf pdf-icon"></i> Download PDF
+                        </a>
+                        <button class="btn btn-outline-primary btn-lg px-4">
+                            <i class="fas fa-bookmark"></i> Save for Later
+                        </button>
+                        <button class="btn btn-outline-secondary btn-lg px-4">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Content Section -->
+    <section class="book-content py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header bg-white">
+                            <ul class="nav nav-tabs card-header-tabs" id="bookTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="summary-tab" data-bs-toggle="tab" data-bs-target="#summary" type="button">Summary</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button">Reviews</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button">Details</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body" style="font-family:Hind Siliguri ;">
+                            <div class="tab-content" id="bookTabsContent">
+                                <div class="tab-pane fade show active" id="summary" role="tabpanel">
+                                    <h4 class="mb-4">পথের পাঁচালী</h4>
+                                    <p>পথের পাঁচালী" উপন্যাসটি একটি দরিদ্র ব্রাহ্মণ পরিবার — বিশেষ করে ছোট ছেলে অপু এবং তার বোন দুর্গা-কে কেন্দ্র করে লেখা। এই কাহিনির পটভূমি গ্রামবাংলার প্রকৃতি ও জীবনযাত্রা।</p>
+                                    <p>অপুর বাবা হরিহর একজন অভাবগ্রস্ত পুরোহিত, যিনি সংসার চালাতে হিমশিম খাচ্ছেন। মা সর্বজয়া সংসারের দারিদ্র্য, সমাজের তিরস্কার এবং সন্তানদের লালনপালন করতে গিয়ে অবর্ণনীয় কষ্ট সহ্য করেন। দুর্গা এক উচ্ছল ও প্রকৃতিপ্রেমী মেয়ে, কিন্তু তার ভাগ্য নির্মম। তার আকস্মিক মৃত্যু কাহিনির অন্যতম মর্মস্পর্শী অংশ।</p>
+                                    <p>উপন্যাসটি মূলত শৈশবের কৌতূহল, দারিদ্র্য, প্রকৃতির সঙ্গে সম্পর্ক, এবং জীবনযুদ্ধে টিকে থাকার সংগ্রাম ফুটিয়ে তোলে। অপু ধীরে ধীরে বড় হয়, এবং উপন্যাসের শেষভাগে বাবার সঙ্গে গ্রাম ছেড়ে শহরের পথে পা বাড়ায় — একটি নতুন জীবনের সূচনা।</p>
+                            </div>
+                         <!--      <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                    <h4 class="mb-4">Reader Reviews</h4>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <h5>John D.</h5>
+                                            <div>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                            </div>
+                                        </div>
+                                        <p>"The Great Gatsby is truly a masterpiece of American literature. Fitzgerald's prose is beautiful and his critique of the American Dream remains relevant today. This is a book that rewards multiple readings."</p>
+                                        <small class="text-muted">Posted on March 15, 2023</small>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <h5>Sarah M.</h5>
+                                            <div>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="far fa-star text-warning"></i>
+                                            </div>
+                                        </div>
+                                        <p>"I had to read this for school and ended up loving it more than I expected. The characters are complex and the story is both glamorous and tragic. The ending left me thinking for days."</p>
+                                        <small class="text-muted">Posted on January 5, 2023</small>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <h5>Michael T.</h5>
+                                            <div>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star-half-alt text-warning"></i>
+                                            </div>
+                                        </div>
+                                        <p>"Fitzgerald captures the excesses of the Jazz Age perfectly. Gatsby's obsession with Daisy and his inability to see her flaws is both heartbreaking and frustrating. A timeless classic."</p>
+                                        <small class="text-muted">Posted on November 22, 2022</small>
+                                    </div>
+                                    
+                                    <div class="mt-4">
+                                        <h5>Write a Review</h5>
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="reviewRating" class="form-label">Rating</label>
+                                                <select class="form-select" id="reviewRating">
+                                                    <option selected>Select rating</option>
+                                                    <option value="5">5 Stars</option>
+                                                    <option value="4">4 Stars</option>
+                                                    <option value="3">3 Stars</option>
+                                                    <option value="2">2 Stars</option>
+                                                    <option value="1">1 Star</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="reviewText" class="form-label">Your Review</label>
+                                                <textarea class="form-control" id="reviewText" rows="3"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="details" role="tabpanel">
+                                    <h4 class="mb-4">Additional Details</h4>
+                                    <h5>About the Author</h5>
+                                    <p>Francis Scott Key Fitzgerald (September 24, 1896 – December 21, 1940) was an American novelist, essayist, and short story writer. He is best known for his novels depicting the flamboyance and excess of the Jazz Age—a term he popularized. During his lifetime, he published four novels, four story collections, and 164 short stories.</p>
+                                    <p>Fitzgerald is considered a member of the "Lost Generation" of the 1920s. He finished four novels: <em>This Side of Paradise</em>, <em>The Beautiful and Damned</em>, <em>The Great Gatsby</em> (his most famous), and <em>Tender Is the Night</em>. A fifth, unfinished novel, <em>The Love of the Last Tycoon</em>, was published posthumously.</p>
+                                    
+                                    <h5 class="mt-4">Publication History</h5>
+                                    <p>The Great Gatsby was published by Charles Scribner's Sons on April 10, 1925, priced at $2. The first printing of 20,870 copies sold slowly. Fitzgerald died in 1940, believing himself to be a failure and his work forgotten. However, the novel experienced a revival during World War II, and became a part of American high school curricula in the following decades.</p>
+                                    
+                                    <h5 class="mt-4">Adaptations</h5>
+                                    <p>The Great Gatsby has been adapted into various films, plays, and other media over the years, including:</p>
+                                    <ul>
+                                        <li>1926 silent film (now lost)</li>
+                                        <li>1949 film starring Alan Ladd</li>
+                                        <li>1974 film starring Robert Redford</li>
+                                        <li>2013 film starring Leonardo DiCaprio</li>
+                                        <li>Numerous stage and radio adaptations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </section>   
+
+    <!-- Similar Books Section -->
+  <!--  <section class="similar-books py-5">
+        <div class="container">
+            <h2 class="mb-5">Similar Books You Might Enjoy</h2>
+            <div class="row g-4">
+                <div class="col-md-4 col-lg-3">
+                    <div class="card h-100 similar-book-card">
+                        <img src="https://m.media-amazon.com/images/I/71FxgtFKcQL._AC_UF1000,1000_QL80_.jpg" class="card-img-top" alt="To Kill a Mockingbird">
+                        <div class="card-body">
+                            <h5 class="card-title">To Kill a Mockingbird</h5>
+                            <p class="card-text text-muted">Harper Lee</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-light text-dark">Classic</span>
+                                <a href="/Assets/pdf/PEC Cup Math Solution.pdf " class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-file-pdf pdf-icon"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="card h-100 similar-book-card">
+                        <img src="https://m.media-amazon.com/images/I/71X1p4TGlxL._AC_UF1000,1000_QL80_.jpg" class="card-img-top" alt="1984">
+                        <div class="card-body">
+                            <h5 class="card-title">1984</h5>
+                            <p class="card-text text-muted">George Orwell</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-light text-dark">Dystopian</span>
+                                <a href="#" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-file-pdf pdf-icon"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="card h-100 similar-book-card">
+                        <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" class="card-img-top" alt="The Catcher in the Rye">
+                        <div class="card-body">
+                            <h5 class="card-title">The Catcher in the Rye</h5>
+                            <p class="card-text text-muted">J.D. Salinger</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-light text-dark">Coming-of-Age</span>
+                                <a href="#" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-file-pdf pdf-icon"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="card h-100 similar-book-card">
+                        <img src="/Image/jimeng-2025-05-23-712-Realistic Cinematic image style - _An elderly rich man giving life advice to a....jpeg" class="card-img-top" alt="Pride and Prejudice">
+                        <div class="card-body">
+                            <h5 class="card-title">Pride and Prejudice</h5>
+                            <p class="card-text text-muted">Jane Austen</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-light text-dark">Romance</span>
+                                <a href="#" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-file-pdf pdf-icon"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-4">
+                        <i class="fas fa-book-open me-2"></i>বইবিন্দু
+                    </h5>
+                    <p>সকল ধরণের PDF বই আবিষ্কার এবং ভাগ করে নেওয়ার জন্য আপনার ডিজিটাল লাইব্রেরি।</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-discord fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white-50">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Categories</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">About</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">DMCA</a></li>
+                    </ul>
+                </div>
+               <!-- <div class="col-lg-4 col-md-4">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p>Subscribe to get updates on new books and features.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div> -->
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">© 2023 PDFVerse. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-white-50 mb-0">Made with <i class="fas fa-heart text-danger"></i> for book lovers</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

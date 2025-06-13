@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বইবিন্দু</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Unlock&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        :root {
+            --primary-color: #6a3093;
+            --secondary-color: #a044ff;
+            --accent-color: #ff7675;
+            --success-color: #00b894;
+            --warning-color: #fdcb6e;
+            --info-color: #0984e3;
+            --dark-color: #2d3436;
+            --light-color: #f5f6fa;
+            --background-gradient: linear-gradient(135deg, #6a3093 0%, #a044ff 100%);
+            --card-gradient: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+        }
+
+        body {
+            background: var(--background-gradient);
+            min-height: 100vh;
+            font-family: 'Baloo Da 2', 'Hind Siliguri', cursive;
+            padding-top: 76px;
+            color: var(--dark-color);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            font-family: 'Baloo Da 2', cursive;
+        }
+
+        .nav-link {
+            color: var(--dark-color) !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px;
+            margin: 0 0.2rem;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .nav-link:hover {
+            background: rgba(106, 48, 147, 0.1);
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .admin-toggle {
+            background: var(--accent-color);
+            color: white !important;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(255, 118, 117, 0.4);
+        }
+
+        .admin-toggle:hover {
+            background: #e84393 !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 118, 117, 0.6);
+        }
+
+        /* Main Container */
+        .main-container {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            overflow: hidden;
+            min-height: 600px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .main-container:hover {
+            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.25);
+            transform: translateY(-5px);
+        }
+
+        /* Admin Section */
+        .admin-section {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .upload-area {
+            border: 3px dashed rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        .upload-area:hover {
+            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            animation: none;
+        }
+
+        .upload-area.dragover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover .upload-icon {
+            transform: scale(1.2);
+            color: var(--warning-color);
+        }
+
+        /* PDF Library Section */
+        .library-section {
+            padding: 2rem;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .library-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .library-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+            font-family: 'Baloo Da 2', cursive;
+        }
+
+        .library-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .pdf-card {
+            background: var(--card-gradient);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: none;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .pdf-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .pdf-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .pdf-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pdf-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-card:hover .pdf-icon {
+            transform: rotate(10deg) scale(1.1);
+            color: var(--primary-color);
+        }
+
+        .pdf-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Baloo Da 2', cursive;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-card:hover .pdf-title {
+            color: var(--secondary-color);
+        }
+
+        .pdf-info {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-view {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(160, 68, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-view:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(160, 68, 255, 0.4);
+        }
+
+        .btn-view::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .btn-view:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        .btn-remove {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-remove:hover {
+            background: #e84393;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* PDF Viewer */
+        .pdf-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1050;
+        }
+
+        .pdf-viewer.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .viewer-header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .viewer-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+            font-family: 'Baloo Da 2', cursive;
+        }
+
+        .viewer-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-viewer {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: none;
+            background: var(--secondary-color);
+            color: white;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-viewer:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-close {
+            background: var(--accent-color);
+        }
+
+        .btn-close:hover {
+            background: #e84393;
+        }
+
+        .canvas-container {
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+        }
+
+        .pdf-canvas {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-canvas:hover {
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: white;
+        }
+
+        .spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-pdfs {
+            text-align: center;
+            color: #6c757d;
+            padding: 3rem;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .no-pdfs i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        .admin-info {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .success-message {
+            background: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+            animation: fadeIn 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+        }
+
+        /* Floating animation for logo */
+        .logo-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .pdf-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .viewer-header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .viewer-controls {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .library-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Bangla text styling */
+        .bangla-text {
+            font-family: 'Hind Siliguri', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem 0;
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/Image/ChatGPT Image Jun 5, 2025, 11_41_57 AM.png" class="rounded-3 logo-float" alt="বইবিন্দু লোগো" width="50" height="44">
+                <span class="fw-bold ms-2">বইবিন্দু</span>    
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="" onclick="showLibrary()">
+                            <i class="fas fa-home me-1"></i> Library
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Nav/About.html" onclick="showAbout()">
+                            <i class="fas fa-info-circle me-1"></i> About
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link admin-toggle" href="#" onclick="toggleAdmin()">
+                            <i class="fas fa-user-shield me-1"></i> অ্যাডমিন প্যানেল
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="main-container">
+            <!-- Admin Section (Hidden by default) -->
+            <div class="admin-section" id="adminSection">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="text-center mb-4">
+                            <i class="fas fa-upload me-2"></i>
+                            অ্যাডমিন প্যানেল - পিডিএফ আপলোড
+                        </h2>
+                        
+                        <div class="success-message" id="successMessage">
+                            <i class="fas fa-check-circle me-2"></i>
+                            পিডিএফ সফলভাবে আপলোড হয়েছে!
+                        </div>
+
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h4>আপনার পিডিএফ ফাইলটি এখানে দিন</h4>
+                            <p class="mb-3">অথবা ব্রাউজ করতে ক্লিক করুন</p>
+                            <input type="file" id="fileInput" accept=".pdf" class="d-none">
+                            <button class="btn btn-light btn-lg" onclick="document.getElementById('fileInput').click()">
+                                <i class="fas fa-folder-open me-2"></i>পিডিএফ ফাইল নির্বাচন করুন
+                            </button>
+                        </div>
+
+                        <div class="admin-info">
+                            <h5><i class="fas fa-info-circle me-2"></i>নির্দেশনা</h5>
+                            <ul class="mb-0 bangla-text">
+                                <li>পিডিএফ ফাইল আপলোড করুন যা দর্শকরা দেখতে পারবেন</li>
+                                <li>সর্বোচ্চ ফাইল সাইজ: ৫০এমবি</li>
+                                <li>ফাইলগুলো স্থানীয়ভাবে ব্রাউজারের মেমোরিতে সংরক্ষিত থাকে</li>
+                                <li>দর্শকরা শুধুমাত্র দেখতে পারবেন, আপলোড বা ডাউনলোড করতে পারবেন না</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Library Section -->
+            <div class="library-section" id="librarySection">
+                <div class="library-header">
+                    <h1 class="library-title animate__animated animate__fadeInDown">
+                        <i class="fas fa-book-open me-2"></i>
+                        বইবিন্দু ডকুমেন্ট লাইব্রেরি
+                    </h1>
+                    <p class="text-muted">উপলব্ধ বইবিন্দু ডকুমেন্টগুলি ব্রাউজ করুন এবং পড়ুন</p>
+                </div>
+
+                <div class="pdf-grid" id="pdfGrid">
+                    <!-- PDF cards will be inserted here -->
+                </div>
+
+                <div class="no-pdfs" id="noPdfs">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>কোন পিডিএফ পাওয়া যায়নি</h3>
+                    <p class="bangla-text">বর্তমানে লাইব্রেরিতে কোন পিডিএফ ডকুমেন্ট নেই</p>
+                    <button class="btn btn-primary" onclick="toggleAdmin()">
+                        <i class="fas fa-upload me-2"></i>পিডিএফ আপলোড করুন
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <p class="mb-0 bangla-text">© ২০২৫ বইবিন্দু - একটি ডিজিটাল লাইব্রেরি প্ল্যাটফর্ম</p>
+                <p class="small text-muted mt-2">
+                    <i class="fas fa-heart text-danger"></i> সাহিত্য ও জ্ঞানের প্রসারে নিবেদিত
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Viewer Modal -->
+    <div class="pdf-viewer" id="pdfViewer">
+        <div class="viewer-header">
+            <h4 class="viewer-title" id="viewerTitle">ডকুমেন্ট ভিউয়ার</h4>
+            <div class="viewer-controls">
+                <button class="btn-viewer" id="prevPage">
+                    <i class="fas fa-chevron-left"></i> পূর্ববর্তী
+                </button>
+                <span class="mx-3">
+                    পাতা <span id="currentPage">১</span> / <span id="totalPages">১</span>
+                </span>
+                <button class="btn-viewer" id="nextPage">
+                    পরবর্তী <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="btn-viewer" id="zoomOut">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <span class="mx-2"><span id="zoomLevel">১০০</span>%</span>
+                <button class="btn-viewer" id="zoomIn">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="btn-viewer btn-close" id="closeViewer">
+                    <i class="fas fa-times"></i> বন্ধ করুন
+                </button>
+            </div>
+        </div>
+        <div class="canvas-container" id="canvasContainer">
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <div>লোড হচ্ছে...</div>
+            </div>
+            <canvas id="pdfCanvas"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        // Global variables
+        let pdfDocuments = [];
+        let currentPdf = null;
+        let currentPage = 1;
+        let totalPages = 0;
+        let scale = 1.2;
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // DOM elements
+        const adminSection = document.getElementById('adminSection');
+        const librarySection = document.getElementById('librarySection');
+        const pdfViewer = document.getElementById('pdfViewer');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const pdfGrid = document.getElementById('pdfGrid');
+        const noPdfs = document.getElementById('noPdfs');
+        const loading = document.getElementById('loading');
+        const successMessage = document.getElementById('successMessage');
+        const navbar = document.querySelector('.navbar');
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showLibrary();
+            loadStoredPDFs();
+            updateLibraryDisplay();
+            
+            // Add animation to main container on load
+            document.querySelector('.main-container').classList.add('animate__animated', 'animate__fadeInUp');
+        });
+
+        // Navigation functions
+        function showLibrary() {
+            adminSection.classList.remove('active');
+            librarySection.style.display = 'block';
+            
+            // Add animation to library section
+            librarySection.classList.add('animate__animated', 'animate__fadeIn');
+        }
+
+        function toggleAdmin() {
+            if (adminSection.classList.contains('active')) {
+                showLibrary();
+            } else {
+                adminSection.classList.add('active');
+                librarySection.style.display = 'none';
+                
+                // Add animation to admin section
+                adminSection.classList.add('animate__animated', 'animate__fadeIn');
+            }
+        }
+
+        function showAbout() {
+            Swal.fire({
+                title: 'বইবিন্দু সম্পর্কে',
+                html: `
+                    <div class="bangla-text text-start">
+                        <p>বইবিন্দু একটি ডিজিটাল লাইব্রেরি প্ল্যাটফর্ম যেখানে আপনি বিভিন্ন ধরনের পিডিএফ ডকুমেন্ট ব্রাউজ করতে এবং পড়তে পারবেন।</p>
+                        <p>এই প্ল্যাটফর্মটি তৈরি করা হয়েছে সাহিত্য ও জ্ঞানের প্রসারের উদ্দেশ্যে।</p>
+                        <hr>
+                        <p class="small text-muted">সংস্করণ: ১.০.০</p>
+                    </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'ঠিক আছে',
+                confirmButtonColor: 'var(--primary-color)',
+                background: 'var(--light-color)',
+                backdrop: `
+                    rgba(0,0,0,0.5)
+                    url("/images/nyan-cat.gif")
+                    left top
+                    no-repeat
+                `
+            });
+        }
+
+        // Admin upload functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileUpload(files[0]);
+            }
+        });
+
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFileUpload(e.target.files[0]);
+            }
+        });
+
+        function handleFileUpload(file) {
+            if (file.type !== 'application/pdf') {
+                Swal.fire({
+                    title: 'ত্রুটি!',
+                    text: 'দয়া করে একটি বৈধ পিডিএফ ফাইল নির্বাচন করুন।',
+                    icon: 'error',
+                    confirmButtonText: 'ঠিক আছে',
+                    confirmButtonColor: 'var(--accent-color)'
+                });
+                return;
+            }
+
+            if (file.size > 50 * 1024 * 1024) {
+                Swal.fire({
+                    title: 'ফাইল খুব বড়!',
+                    text: 'দয়া করে ৫০এমবি এর ছোট একটি পিডিএফ ফাইল নির্বাচন করুন।',
+                    icon: 'warning',
+                    confirmButtonText: 'ঠিক আছে',
+                    confirmButtonColor: 'var(--warning-color)'
+                });
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const pdfData = {
+                    id: Date.now(),
+                    name: file.name,
+                    size: file.size,
+                    data: e.target.result,
+                    uploadDate: new Date().toLocaleDateString('bn-BD')
+                };
+
+                pdfDocuments.push(pdfData);
+                savePDFs();
+                updateLibraryDisplay();
+                showSuccessMessage();
+                fileInput.value = '';
+                
+                // Add celebration effect
+                celebrateUpload();
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function celebrateUpload() {
+            // Add confetti effect
+            const duration = 3 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                
+                // Since particles fall down, start a bit higher than random
+                confetti(
+                    Object.assign({}, defaults, {
+                        particleCount,
+                        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                    })
+                );
+                confetti(
+                    Object.assign({}, defaults, {
+                        particleCount,
+                        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                    })
+                );
+            }, 250);
+        }
+
+        function showSuccessMessage() {
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        // Library display functions
+        function updateLibraryDisplay() {
+            if (pdfDocuments.length === 0) {
+                pdfGrid.style.display = 'none';
+                noPdfs.style.display = 'block';
+            } else {
+                pdfGrid.style.display = 'grid';
+                noPdfs.style.display = 'none';
+                renderPDFCards();
+            }
+        }
+
+        function renderPDFCards() {
+            pdfGrid.innerHTML = '';
+            pdfDocuments.forEach(pdf => {
+                const card = document.createElement('div');
+                card.className = 'pdf-card animate__animated animate__fadeInUp';
+                card.style.animationDelay = `${pdfDocuments.indexOf(pdf) * 0.1}s`;
+                card.innerHTML = `
+                    <div class="text-center">
+                        <div class="pdf-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h5 class="pdf-title">${pdf.name}</h5>
+                        <div class="pdf-info">
+                            <div><i class="fas fa-calendar me-1"></i> ${pdf.uploadDate}</div>
+                            <div><i class="fas fa-file-alt me-1"></i> ${formatFileSize(pdf.size)}</div>
+                        </div>
+                        <button class="btn-view" onclick="viewPDF(${pdf.id})">
+                            <i class="fas fa-eye me-1"></i> দেখুন
+                        </button>
+                        ${adminSection.classList.contains('active') ? 
+                            `<button class="btn-remove" onclick="removePDF(${pdf.id})">
+                                <i class="fas fa-trash"></i> মুছুন
+                            </button>` : ''
+                        }
+                    </div>
+                `;
+                pdfGrid.appendChild(card);
+            });
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '০ বাইট';
+            const k = 1024;
+            const sizes = ['বাইট', 'কিলোবাইট', 'মেগাবাইট', 'গিগাবাইট'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function removePDF(id) {
+            Swal.fire({
+                title: 'আপনি কি নিশ্চিত?',
+                text: "আপনি এই পিডিএফটি মুছে ফেলতে চান?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'var(--accent-color)',
+                cancelButtonColor: 'var(--secondary-color)',
+                confirmButtonText: 'হ্যাঁ, মুছে ফেলুন!',
+                cancelButtonText: 'বাতিল করুন'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    pdfDocuments = pdfDocuments.filter(pdf => pdf.id !== id);
+                    savePDFs();
+                    updateLibraryDisplay();
+                    
+                    Swal.fire(
+                        'মুছে ফেলা হয়েছে!',
+                        'পিডিএফটি সফলভাবে মুছে ফেলা হয়েছে।',
+                        'success'
+                    );
+                }
+            });
+        }
+
+        // PDF viewing functions
+        async function viewPDF(id) {
+            const pdf = pdfDocuments.find(p => p.id === id);
+            if (!pdf) return;
+
+            document.getElementById('viewerTitle').textContent = pdf.name;
+            pdfViewer.classList.add('active');
+            showLoading();
+
+            try {
+                const typedArray = new Uint8Array(pdf.data);
+                currentPdf = await pdfjsLib.getDocument({data: typedArray}).promise;
+                totalPages = currentPdf.numPages;
+                document.getElementById('totalPages').textContent = totalPages;
+                renderPage(1);
+            } catch (error) {
+                Swal.fire({
+                    title: 'ত্রুটি!',
+                    text: 'পিডিএফ লোড করতে সমস্যা হয়েছে: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'ঠিক আছে',
+                    confirmButtonColor: 'var(--accent-color)'
+                });
+                closePDFViewer();
+            }
+        }
+
+        async function renderPage(pageNum) {
+            try {
+                showLoading();
+                const page = await currentPdf.getPage(pageNum);
+                const viewport = page.getViewport({scale: scale});
+                
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                
+                await page.render(renderContext).promise;
+                
+                currentPage = pageNum;
+                document.getElementById('currentPage').textContent = currentPage;
+                updateNavigationButtons();
+                hideLoading();
+                
+                // Add slight animation to canvas
+                canvas.classList.add('animate__animated', 'animate__fadeIn');
+                setTimeout(() => {
+                    canvas.classList.remove('animate__animated', 'animate__fadeIn');
+                }, 1000);
+                
+            } catch (error) {
+                Swal.fire({
+                    title: 'ত্রুটি!',
+                    text: 'পৃষ্ঠা প্রদর্শনে সমস্যা হয়েছে: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'ঠিক আছে',
+                    confirmButtonColor: 'var(--accent-color)'
+                });
+                hideLoading();
+            }
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prevPage').disabled = currentPage <= 1;
+            document.getElementById('nextPage').disabled = currentPage >= totalPages;
+        }
+
+        // Viewer controls
+        document.getElementById('prevPage').addEventListener('click', () => {
+            if (currentPage > 1) renderPage(currentPage - 1);
+        });
+
+        document.getElementById('nextPage').addEventListener('click', () => {
+            if (currentPage < totalPages) renderPage(currentPage + 1);
+        });
+
+        document.getElementById('zoomIn').addEventListener('click', () => {
+            scale = Math.min(scale * 1.2, 3);
+            document.getElementById('zoomLevel').textContent = Math.round(scale * 100);
+            renderPage(currentPage);
+        });
+
+        document.getElementById('zoomOut').addEventListener('click', () => {
+            scale = Math.max(scale / 1.2, 0.5);
+            document.getElementById('zoomLevel').textContent = Math.round(scale * 100);
+            renderPage(currentPage);
+        });
+
+        document.getElementById('closeViewer').addEventListener('click', closePDFViewer);
+
+        function closePDFViewer() {
+            pdfViewer.classList.remove('active');
+            currentPdf = null;
+            scale = 1.2;
+            currentPage = 1;
+            document.getElementById('zoomLevel').textContent = '100';
+        }
+
+        // Utility functions
+        function showLoading() {
+            loading.style.display = 'flex';
+            canvas.style.display = 'none';
+        }
+
+        function hideLoading() {
+            loading.style.display = 'none';
+            canvas.style.display = 'block';
+        }
+
+        // Storage functions
+        function savePDFs() {
+            try {
+                localStorage.setItem('pdfDocuments', JSON.stringify(pdfDocuments.map(pdf => {
+                    return {
+                        id: pdf.id,
+                        name: pdf.name,
+                        size: pdf.size,
+                        uploadDate: pdf.uploadDate,
+                        // Convert ArrayBuffer to base64 for storage
+                        data: arrayBufferToBase64(pdf.data)
+                    };
+                })));
+            } catch (error) {
+                console.error('Error saving PDFs:', error);
+                Swal.fire({
+                    title: 'ত্রুটি!',
+                    text: 'পিডিএফ সংরক্ষণ করতে সমস্যা হয়েছে: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'ঠিক আছে',
+                    confirmButtonColor: 'var(--accent-color)'
+                });
+            }
+        }
+
+        function loadStoredPDFs() {
+            try {
+                const storedPDFs = localStorage.getItem('pdfDocuments');
+                if (storedPDFs) {
+                    const parsed = JSON.parse(storedPDFs);
+                    pdfDocuments = parsed.map(pdf => {
+                        return {
+                            id: pdf.id,
+                            name: pdf.name,
+                            size: pdf.size,
+                            uploadDate: pdf.uploadDate,
+                            // Convert base64 back to ArrayBuffer
+                            data: base64ToArrayBuffer(pdf.data)
+                        };
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading stored PDFs:', error);
+                Swal.fire({
+                    title: 'ত্রুটি!',
+                    text: 'সংরক্ষিত পিডিএফ লোড করতে সমস্যা হয়েছে: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'ঠিক আছে',
+                    confirmButtonColor: 'var(--accent-color)'
+                });
+            }
+        }
+
+        // Helper functions for ArrayBuffer <-> base64 conversion
+        function arrayBufferToBase64(buffer) {
+            let binary = '';
+            const bytes = new Uint8Array(buffer);
+            const len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        }
+
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (pdfViewer.classList.contains('active') && currentPdf) {
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        if (currentPage > 1) renderPage(currentPage - 1);
+                        break;
+                    case 'ArrowRight':
+                        if (currentPage < totalPages) renderPage(currentPage + 1);
+                        break;
+                    case 'Escape':
+                        closePDFViewer();
+                        break;
+                }
+            }
+        });
+        
+        // Add SweetAlert for better alerts
+        const Swal = {
+            fire: function(options) {
+                return new Promise(resolve => {
+                    const alertDiv = document.createElement('div');
+                    alertDiv.className = 'sweet-alert';
+                    alertDiv.innerHTML = `
+                        <div class="sweet-content">
+                            <h3>${options.title || ''}</h3>
+                            <p>${options.text || ''}</p>
+                            <button class="btn btn-primary">${options.confirmButtonText || 'OK'}</button>
+                        </div>
+                    `;
+                    document.body.appendChild(alertDiv);
+                    
+                    alertDiv.querySelector('button').addEventListener('click', () => {
+                        document.body.removeChild(alertDiv);
+                        resolve({ isConfirmed: true });
+                    });
+                });
+            }
+        };
+        
+        // Add confetti effect
+        const confetti = function(options) {
+            // Simple confetti effect implementation
+            const colors = ['#ff7675', '#74b9ff', '#55efc4', '#ffeaa7', '#a29bfe'];
+            const particles = options.particleCount || 50;
+            
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'confetti-particle';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = '0';
+                particle.style.width = `${Math.random() * 10 + 5}px`;
+                particle.style.height = particle.style.width;
+                particle.style.position = 'fixed';
+                particle.style.zIndex = '9999';
+                particle.style.borderRadius = '50%';
+                
+                document.body.appendChild(particle);
+                
+                const animation = particle.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                animation.onfinish = () => {
+                    document.body.removeChild(particle);
+                };
+            }
+        };
+    </script>
+</body>
+</html>

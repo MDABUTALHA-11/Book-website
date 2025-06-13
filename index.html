@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বইবিন্দু
+</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google fonts Bangla -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Unlock&display=swap" rel="stylesheet">
+    <!-- Google fonts English -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+<!-- Default .ico (for older browsers) -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+<!-- Modern browsers (PNG) -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+<!-- Apple/Safari -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- Android/Chrome PWA -->
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Microsoft Tiles (optional) -->
+<meta name="msapplication-config" content="browserconfig.xml">
+
+
+   <style>
+        .hero-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .category-card {
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        
+        .book-card {
+            transition: all 0.3s;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        
+        .cta-section {
+            padding: 4rem 0;
+        }
+        
+        .pdf-icon {
+            color: #e74c3c;
+            font-size: 1.5rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body style="font-family: Winky Rough;">
+    <!-- Header -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+      <img src="Image/ChatGPT Image Jun 5, 2025, 11_41_57 AM.png" class="rounded-3" alt="Bootstrap" width="50" height="44">
+    </a>
+                    <span class="fw-bold">বইবিন্দু </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu" style="font-family: Hind Siliguri;">
+                                <li><a class="dropdown-item" href="/Fiction/page1.html">কল্পকাহিনী</a></li>
+                                <li><a class="dropdown-item" href="#">অ-কল্পকাহিনী</a></li>
+                                <li><a class="dropdown-item" href="#">শিক্ষাগত</a></li>
+                                <li><a class="dropdown-item" href="#">স্ব-সহায়তা</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">সকল বিভাগ</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Nav/About.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Nav/Catagories.html">Catagories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Nav/Privacy-Policy.html">privacy policy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-primary ms-2 px-3" href="#">Upload Your Book</a>
+                        </li>
+                        <li class="nav-item ms-2 d-flex align-items-center">
+                            <a class="btn btn-primary" href="signup.html"> Sign Up</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="font-family: Hind Siliguri;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">আবিষ্কার করুন, ডাউনলোড করুন, ডুব দিন।</h1>
+                    <p class="lead mb-5">ক্লাসিক থেকে শুরু করে লুকানো রত্ন পর্যন্ত, উচ্চমানের PDF-এর আপনার বিনামূল্যের লাইব্রেরি।</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-primary btn-lg px-4">বই ব্রাউজ করুন</a>
+                        <a href="#" class="btn btn-outline-primary btn-lg px-4">আরও জানুন</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="Image/undraw_book-writer_ri5u.svg" alt="Book illustration" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section py-5 bg-light" style="font-family: Hind Siliguri;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="input-group mb-3">
+                        <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="Search by title, author, or genre...">
+                        <button class="btn btn-primary" id="searchButton" type="button">
+                            <i class="fas fa-search"></i>অনুসন্ধান করুন
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories-section py-5" style="font-family: Hind Siliguri;">
+        <div class="container">
+            <h2 class="text-center mb-5">ধরণ অনুসারে অন্বেষণ করুন</h2>
+            <div class="row g-4">
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-card text-center p-4 rounded-3 shadow-sm">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-hat-wizard fa-3x text-primary"></i>
+                        </div>
+                        <h5>কল্পকাহিনী</h5>
+                        <a href="#" class="text-muted small">সবগুলো দেখুন</a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-card text-center p-4 rounded-3 shadow-sm">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-graduation-cap fa-3x text-primary"></i>
+                        </div>
+                        <h5>একাডেমিক</h5>
+                        <a href="#" class="text-muted small">সবগুলো দেখুন</a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-card text-center p-4 rounded-3 shadow-sm">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-brain fa-3x text-primary"></i>
+                        </div>
+                        <h5>আত্মনির্ভরতা</h5>
+                        <a href="#" class="text-muted small">সবগুলো দেখুনl</a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-card text-center p-4 rounded-3 shadow-sm">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-rocket fa-3x text-primary"></i>
+                        </div>
+                        <h5>সায়েন্স ফিকশন</h5>
+                        <a href="#" class="text-muted small">সবগুলো দেখুন</a>
+                    </div>
+                </div>
+     <div class="col-md-4 col-lg-2">
+                    <div class="category-card text-center p-4 rounded-3 shadow-sm">
+                        <div class="icon-wrapper mb-3">
+                           <i class="fas fa-book-open fa-3x text-primary"></i>
+                        </div>
+                        <h5>উপন্যাস</h5>
+                        <a href="/Novel/Book.html" class="text-muted small">সবগুলো দেখুন</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-card text-center p-4 rounded-3 shadow-sm">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-landmark fa-3x text-primary"></i>
+                        </div>
+                        <h5>ইতিহাস</h5>
+                        <a href="#" class="text-muted small">সবগুলো দেখুন</a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-card text-center p-4 rounded-3 shadow-sm">
+                        <div class="icon-wrapper mb-3">
+                            <i class="fas fa-user-tie fa-3x text-primary"></i>
+                        </div>
+                        <h5>জীবন-কথা</h5>
+                        <a href="#" class="text-muted small">সবগুলো দেখুন</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Books -->
+    <section class="trending-section py-5 bg-light" style="font-family: Hind Siliguri;">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 id="resultsTitle">এই সপ্তাহে চলমান</h2>
+                <a href="#" class="btn btn-outline-primary">সবগুলো দেখুন</a>
+            </div>
+            
+            <div class="row g-4" id="booksContainer">
+                <!-- Books will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5 bg-primary text-white" style="font-family: Hind Siliguri;">
+        <div class="container text-center">
+            <h2 class="mb-4">শেয়ার করার জন্য কোন বই আছে?</h2>
+            <p class="lead mb-5">এটি PDFVerse-এ আপলোড করুন এবং আমাদের কমিউনিটি লাইব্রেরি তৈরিতে সাহায্য করুন!</p>
+            <a href="Page/book.html" class="btn btn-light btn-lg px-5">আপনার বই আপলোড করুন</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5" style="font-family: Hind Siliguri;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-4">
+                        <i class="fas fa-book-open me-2"></i> বইবিন্দু 
+                    </h5>
+                    <p>সকল ধরণের পিডিএফ বই আবিষ্কার এবং ভাগ করে নেওয়ার জন্য আপনার আধুনিক লাইব্রেরি।</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-discord fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Categories</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">About</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">DMCA</a></li>
+                    </ul>
+                </div>
+             <!--  <div class="col-lg-4 col-md-4">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p>Subscribe to get updates on new books and features.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div> -->
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">© 2023 বইবিন্দু All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-white-50 mb-0">বইপ্রেমীদের জন্য<i class="fas fa-heart text-danger"></i> দিয়ে তৈরি</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Mock database of books with PDF links
+        const books = [
+            {
+                id: 1,
+                title: "পথের-পাঁচালী",
+                author: "বিভূতিভূষণ বন্দ্যোপাধ্যায়",
+                genre: "উপন্যাস",
+                description: "পথের পাঁচালী হল প্রখ্যাত সাহিত্যিক বিভূতিভূষণ বন্দ্যোপাধ্যায় রচিত একটি বিখ্যাত উপন্যাস। বাংলার গ্রামে দুই ভাইবোন অপু আর দুর্গার বেড়ে ওঠা নিয়েই বিখ্যাত এই উপন্যাস। ",
+                coverImage: "Image/jimeng-2025-06-07-6-A rural Bengal village scene in the early 20th century. Two barefoot children wa....jpeg",
+                pdfUrl: "Assets/pdf/পথের-পাঁচালী.pdf", // Sample link to Project Gutenberg
+                fileSize: "2.4 MB",
+                trending: true
+            },
+      /*      {
+                id: 2,
+                title: "Atomic Habits",
+                author: "James Clear",
+                genre: "Self-Help",
+                description: "Learn how to build good habits and break bad ones.",
+                coverImage: "https://m.media-amazon.com/images/I/91bYsX41DVL._AC_UF1000,1000_QL80_.jpg",
+                pdfUrl: "https://jamesclear.com/atomic-habits", // Sample link to author's site
+                fileSize: "3.1 MB",
+                trending: true
+            },*/
+       /*     {
+                id: 3,
+                title: "To Kill a Mockingbird",
+                author: "Harper Lee",
+                genre: "Fiction",
+                description: "A powerful story of racial injustice and moral growth.",
+                coverImage: "https://m.media-amazon.com/images/I/71FxgtFKcQL._AC_UF1000,1000_QL80_.jpg",
+                pdfUrl: "https://www.gutenberg.org/files/64317/64317-h/64317-h.htm", // Sample link
+                fileSize: "1.8 MB",
+                trending: true
+            },*/
+       /*     {
+                id: 4,
+                title: "Sapiens: A Brief History of Humankind",
+                author: "Yuval Noah Harari",
+                genre: "History",
+                description: "Exploring the history of our species from the Stone Age to the 21st century.",
+                coverImage: "https://m.media-amazon.com/images/I/713jIoMO3UL._AC_UF1000,1000_QL80_.jpg",
+                pdfUrl: "https://www.harari.com/book/sapiens/", // Sample link to author's site
+                fileSize: "4.2 MB",
+                trending: true
+            },*/
+         /*   {
+                id: 5,
+                title: "The Psychology of Money",
+                author: "Morgan Housel",
+                genre: "Self-Help",
+                description: "Timeless lessons on wealth, greed, and happiness.",
+                coverImage: "https://m.media-amazon.com/images/I/71VXG0uGQAL._AC_UF1000,1000_QL80_.jpg",
+                pdfUrl: "https://www.morganhousel.com/book", // Sample link to author's site
+                fileSize: "2.9 MB",
+                trending: false
+            },*/
+        /*    {
+                id: 6,
+                title: "Dune",
+                author: "Frank Herbert",
+                genre: "Sci-Fi",
+                description: "A science fiction masterpiece set in a distant future.",
+                coverImage: "https://m.media-amazon.com/images/I/91OBLqdQoZL._AC_UF1000,1000_QL80_.jpg",
+                pdfUrl: "https://www.gutenberg.org/files/64317/64317-h/64317-h.htm", // Sample link
+                fileSize: "5.1 MB",
+                trending: true
+            },*/
+        /*    {
+                id: 7,
+                title: "The Silent Patient",
+                author: "Alex Michaelides",
+                genre: "Fiction",
+                description: "A psychological thriller about a woman who shoots her husband and then stops speaking.",
+                coverImage: "https://m.media-amazon.com/images/I/81pL6W+UURL._AC_UF1000,1000_QL80_.jpg",
+                pdfUrl: "https://www.alexmichaelides.com/book/the-silent-patient/", // Sample link
+                fileSize: "3.5 MB",
+                trending: false
+            },*/
+        /*    {
+                id: 8,
+                title: "Educated",
+                author: "Tara Westover",
+                genre: "Biography",
+                description: "A memoir about a woman who leaves her survivalist family and goes on to earn a PhD.",
+                coverImage: "Image/jimeng-2025-05-23-712-Realistic Cinematic image style - _An elderly rich man giving life advice to a....jpeg",
+                pdfUrl: "Assets/pdf/PEC Cup Math Solution.pdf", // Sample link
+                fileSize: "83.6 KB",
+                trending: true
+            },*/
+ /*{
+                id: 9,
+                title: "Educated",
+                author: "Tara Westover",
+                genre: "Biography",
+                description: "A memoir about a woman who leaves her survivalist family and goes on to earn a PhD.",
+                coverImage: "Image/jimeng-2025-05-23-712-Realistic Cinematic image style - _An elderly rich man giving life advice to a....jpeg",
+                pdfUrl: "Assets/pdf/PEC Cup Math Solution.pdf", // Sample link
+                fileSize: "83.6 KB",
+                trending: true
+            }*/
+
+        ];
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const booksContainer = document.getElementById('booksContainer');
+        const resultsTitle = document.getElementById('resultsTitle');
+
+        // Initial load - show trending books
+        document.addEventListener('DOMContentLoaded', function() {
+            displayBooks(books.filter(book => book.trending));
+            
+            // Event listeners
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+
+        // Perform search function
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            
+            if (query === '') {
+                // If search is empty, show trending books
+                displayBooks(books.filter(book => book.trending));
+                resultsTitle.textContent = 'Trending This Week';
+                return;
+            }
+            
+            // Filter books based on search query
+            const results = books.filter(book => {
+                return (
+                    book.title.toLowerCase().includes(query) ||
+                    book.author.toLowerCase().includes(query) ||
+                    book.genre.toLowerCase().includes(query) ||
+                    book.description.toLowerCase().includes(query)
+                );
+            });
+            
+            // Display results
+            displayBooks(results);
+            resultsTitle.textContent = results.length === 0 
+                ? 'No books found' 
+                : `Found ${results.length} book${results.length !== 1 ? 's' : ''}`;
+        }
+
+        // Display books function with PDF download buttons
+        function displayBooks(booksToDisplay) {
+            booksContainer.innerHTML = '';
+            
+            if (booksToDisplay.length === 0) {
+                booksContainer.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">No books found</h4>
+                        <p>Try a different search term</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            booksToDisplay.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.className = 'col-md-4 col-lg-3';
+                bookCard.innerHTML = `
+                    <div class="card h-100 shadow-sm book-card">
+                        <img src="${book.coverImage}" class="card-img-top" alt="${book.title}" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">${book.title}</h5>
+                            <p class="card-text text-muted">${book.author}</p>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-dark">${book.genre}</span>
+                                <small class="text-muted">${book.fileSize}</small>
+                            </div>
+                            <div class="d-grid">
+                                <a href="${book.pdfUrl}" class="btn btn-danger" download="${book.title.replace(/ /g, '_')}.pdf" target="_blank">
+                                    <i class="fas fa-file-pdf pdf-icon"></i> Download PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                booksContainer.appendChild(bookCard);
+            });
+        }
+    </script>
+</body>
+</html>
