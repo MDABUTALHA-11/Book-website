@@ -89,7 +89,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="index.html">Home</a>
                         </li>
-                        <li class="nav-item dropdown">
+                      <!--  <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown">
                                 Categories
                             </a>
@@ -101,7 +101,7 @@
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">সকল বিভাগ</a></li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li class="nav-item">
                             <a class="nav-link" href="./Nav/About.html">About</a>
                         </li>
@@ -162,7 +162,35 @@
     <section class="categories-section py-5" style="font-family: Hind Siliguri;">
         <div class="container">
             <h2 class="text-center mb-5">ধরণ অনুসারে অন্বেষণ করুন</h2>
+
+
+
+
             <div class="row g-4">
+
+<!-- Islamic Book Card -->
+<div class="col-md-4 col-lg-2">
+    <div class="category-card text-center p-4 rounded-3 shadow-sm">
+        <div class="icon-wrapper mb-3">
+            <i class="fas fa-mosque fa-3x text-success"></i>
+        </div>
+        <h5>ইসলামিক বই</h5>
+        <a href="./Islamic-Book/Book.html" class="text-muted small">সবগুলো দেখুন</a>
+    </div>
+</div>
+
+<!-- Science Book Card -->
+<div class="col-md-4 col-lg-2">
+    <div class="category-card text-center p-4 rounded-3 shadow-sm">
+        <div class="icon-wrapper mb-3">
+            <i class="fas fa-atom fa-3x text-info"></i>
+        </div>
+        <h5>বিজ্ঞান বই</h5>
+        <a href="./Science/Book.html" class="text-muted small">সবগুলো দেখুন</a>
+    </div>
+</div>
+
+
                 <div class="col-md-4 col-lg-2">
                     <div class="category-card text-center p-4 rounded-3 shadow-sm">
                         <div class="icon-wrapper mb-3">
@@ -187,7 +215,7 @@
                             <i class="fas fa-brain fa-3x text-primary"></i>
                         </div>
                         <h5>আত্মনির্ভরতা</h5>
-                        <a href="#" class="text-muted small">সবগুলো দেখুনl</a>
+                        <a href="./Self-improvment/Book.html" class="text-muted small">সবগুলো দেখুনl</a>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-2">
@@ -336,28 +364,44 @@
                 fileSize: "20.4 MB",
                 trending: true
             },
-       /*     {
+            {
                 id: 3,
-                title: "To Kill a Mockingbird",
-                author: "Harper Lee",
-                genre: "Fiction",
-                description: "A powerful story of racial injustice and moral growth.",
-                coverImage: "https://m.media-amazon.com/images/I/71FxgtFKcQL._AC_UF1000,1000_QL80_.jpg",
-                pdfUrl: "https://www.gutenberg.org/files/64317/64317-h/64317-h.htm", // Sample link
-                fileSize: "1.8 MB",
+                title: "আমাদের জীবনের উদ্দেশ্য কি",
+                author: "ড.জাকির নায়েক",
+                genre: "আত্ম উন্নয়ন",
+                description: "দয়ালুর প্রতি আল্লাহ্‌ও দয়াশীল হন। তাই, পৃথিবীর মানুষের প্রতি দয়াশীল হও, তাহলে যিনি আসমানে আছেন – তিনি তোমার প্রতি দয়া দেখাবেন।” – আবু দাউদ, তিরমিযী",
+                coverImage: "Book Image/jimeng-2025-06-14-857-The aim of our life with walking Muslim man.jpeg",
+                pdfUrl: "Assets/pdf/আমাদের জীবনের উদ্দেশ্য কি___ড. জাকির নায়েক.pdf", // Sample link
+                fileSize: "1.74 MB",
                 trending: true
-            },*/
-       /*     {
+            },
+
+    {
                 id: 4,
-                title: "Sapiens: A Brief History of Humankind",
-                author: "Yuval Noah Harari",
-                genre: "History",
-                description: "Exploring the history of our species from the Stone Age to the 21st century.",
-                coverImage: "https://m.media-amazon.com/images/I/713jIoMO3UL._AC_UF1000,1000_QL80_.jpg",
-                pdfUrl: "https://www.harari.com/book/sapiens/", // Sample link to author's site
-                fileSize: "4.2 MB",
+                title: "আখেরাত",
+                author: "ইমাম গাজ্জালী রহঃ",
+                genre: "ইসলামিক",
+                description: " বইটি ইসলামী চিন্তাবিদ ও সুফিবাদী দার্শনিক ইমাম গাজ্জালী (রহঃ) রচিত একটি অনন্য গ্রন্থ, যেখানে মানবজীবনের পরকালীন পরিণতি নিয়ে গভীর আলোচনা করা হয়েছে।",
+                coverImage: "Book Image/jimeng-2025-06-14-484-Paradise.jpeg",
+                pdfUrl: "Assets/pdf/আখেরাত___ইমাম গাজ্জালী রহঃ.pdf", // Sample link
+                fileSize: "7.16 MB",
                 trending: true
-            },*/
+            },
+
+
+
+           {
+                id: 5,
+                title: "কোয়ান্টাম ফিল্ড তত্ত্ব",
+                author: "মুহাম্মদ আবু তালহা",
+                genre: "বিজ্ঞান",
+                description: "কোয়ান্টাম ফিল্ড থিওরির জটিলতা দূর করে এমন একটি জ্ঞানভাণ্ডার গড়ে তোলা, যা শিক্ষার্থী থেকে গবেষক, সবাই উপকৃত হতে পারবেন।",
+
+                coverImage: "Book Image/jimeng-2025-06-14-485-Quantum field theory.jpeg",
+                pdfUrl: "Assets/pdf/কোয়ান্টাম ফিল্ড তত্ত্ব  (9).pdf", // Sample link to author's site
+                fileSize: "5.42 MB",
+                trending: true
+            },
          /*   {
                 id: 5,
                 title: "The Psychology of Money",
